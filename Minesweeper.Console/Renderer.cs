@@ -6,10 +6,14 @@ internal class Renderer
     /// <summary>
     /// Show field with numbers atop and letters on the left.
     /// </summary>
-    /// <param name="game"></param>
+    /// <remarks>See https://theasciicode.com.ar/ </remarks>
     internal static void WriteField(Game game)
     {
         Console.Clear();
+
+        Console.WriteLine($"Mines left: {game.MinesLeft}");
+        Console.WriteLine();
+
         Console.Write("  ");
         var nums = Enumerable.Range(0, game.Width).Select(n => $"{(n + 1),2:D}");
         Console.WriteLine(string.Join("", nums));
@@ -23,9 +27,10 @@ internal class Renderer
                 var c = game.Cell(x, y);
                 var s = c.State switch
                 {
-                    DisplayStates.Hide => "▓▓", // 178 x 2
-                    DisplayStates.ShowNumber => $"{c.Neighbours,2:D}",
-                    DisplayStates.OpenBomb => "XX",
+                    DisplayStates.Hide => "▒▒", // 177 x 2
+                    DisplayStates.ShowUnarmed => c.Neighbours == 0 ? "  " : $"{c.Neighbours,2:D}",
+                    DisplayStates.MarkedBomb => "██", // 219 x 2
+                    DisplayStates.OpenBomb => " ╬", // 206
                     _ => "  "
                 };
                 Console.Write(s);

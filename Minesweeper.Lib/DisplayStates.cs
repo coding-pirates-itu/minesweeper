@@ -4,7 +4,7 @@
 public enum DisplayStates
 {
     Hide,
-    ShowNumber,
-    OpenEmpty,
+    ShowUnarmed,
+    MarkedBomb,
     OpenBomb
 }

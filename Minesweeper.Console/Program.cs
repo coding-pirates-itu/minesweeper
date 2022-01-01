@@ -1,8 +1,8 @@
 ﻿using Minesweeper.Lib;
 using System.Text.RegularExpressions;
 
-var coordsRx = new Regex("(?<y> [A-Za-z]) (?<x> \\d+)", RegexOptions.IgnorePatternWhitespace);
-var game = new Game(8, 8, 10);
+var coordsRx = new Regex("(?<m> !)? (?<y> [A-Za-z]) (?<x> \\d+)", RegexOptions.IgnorePatternWhitespace);
+var game = new Game(8, 8, 4);
 
 while (!game.IsEnded)
 {
@@ -33,5 +33,5 @@ Command? GetInput()
     if (x < 0 || x >= game.Width || y < 0 || y >= game.Height)
         return null;
 
-    return Command.CheckCommand(x, y);
+    return m.Groups["m"].Success ? Command.MarkCommand(x, y) : Command.CheckCommand(x, y);
 }

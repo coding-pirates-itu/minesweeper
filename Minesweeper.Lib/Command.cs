@@ -27,10 +27,16 @@ public class Command
     }
 
 
+    /// <summary>
+    /// User-initiated end of game.
+    /// </summary>
     public static Command ExitCommand() => new() { Operation = Operations.Exit };
 
 
-    public static Command CheckCommand(int x, int y) => new() { Operation = Operations.Check, X = x, Y = y };
+    public static Command CheckCommand(int x, int y) => new() { Operation = Operations.Step, X = x, Y = y };
+
+
+    public static Command MarkCommand(int x, int y) => new() { Operation = Operations.ToggleMark, X = x, Y = y };
 
     #endregion
 }
