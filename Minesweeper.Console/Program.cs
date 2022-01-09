@@ -17,8 +17,6 @@ Renderer.WriteField(game);
 
 Command? GetInput()
 {
-    Console.WriteLine();
-    Console.Write("Cell or command >");
     var s = Console.ReadLine();
 
     if (s is null || s == "quit")

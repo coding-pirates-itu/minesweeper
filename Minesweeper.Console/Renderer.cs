@@ -11,7 +11,9 @@ internal class Renderer
     {
         Console.Clear();
 
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"Mines left: {game.MinesLeft}");
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine();
 
         Console.Write("  ");
@@ -37,6 +39,30 @@ internal class Renderer
             }
 
             Console.WriteLine();
+        }
+
+        Console.WriteLine();
+
+        if (game.IsWon)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("You won!");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        else if (game.IsLost)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("You lost :-(");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Enter cell coordinates to step on it.");
+            Console.WriteLine("Enter '!' cell coordinates to mark or unmark it.");
+            Console.WriteLine("Enter 'quit' to exit the game.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Command > ");
         }
     }
 }
