@@ -1,0 +1,38 @@
+﻿@code {
+#pragma warning disable 8618
+    [Parameter]
+    public Game Game { get; set; }
+#pragma warning restore 8618
+
+
+    [Parameter]
+    public EventCallback<FieldClickedEventArgs> OnFieldClicked { get; set; }
+}
+
+
+<div> <!-- Get rid of table style -->
+    <div class="field-container">
+
+    @for (var y = 0; y < Game.Height; y++)
+    {
+        <div class="field-row">
+    
+        @for (var x = 0; x < Game.Width; x++)
+        {
+            var localX = x;
+            var localY = y;
+            var cell = Game.Cell(x, y);
+            <FieldCell Cell=@cell OnCellClicked=@(_ => CellClicked(localX, localY))/>
+        }
+        </div>
+    }
+    </div>
+</div>
+
+
+@code {
+    private void CellClicked(int x, int y)
+    {
+        OnFieldClicked.InvokeAsync(new FieldClickedEventArgs { X = x, Y = y });
+    }
+}

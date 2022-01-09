@@ -72,6 +72,8 @@ public class Game
     /// </summary>
     public void Execute(Command command)
     {
+        if (IsEnded) return;
+
         switch (command.Operation)
         {
             case Operations.Exit:

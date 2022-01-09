@@ -1,0 +1,17 @@
+﻿<div class="modecontrol-container">
+    @{
+        var stepClasses = IsStepMode ? "btn-warning disabled" : "btn-outline-warning";
+        var markClasses = !IsStepMode ? "btn-warning disabled" : "btn-outline-warning";
+    }
+
+    <button class="m-1 btn @stepClasses" @onclick=ToggleMode>Step</button>
+    <button class="m-1 btn @markClasses" @onclick=ToggleMode>Mark</button>
+</div>
+
+
+@code {
+    private void ToggleMode()
+    {
+        IsStepMode = !IsStepMode;
+    }
+}

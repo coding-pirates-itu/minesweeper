@@ -1,0 +1,71 @@
+﻿@page "/"
+
+<PageTitle>Minesweeper</PageTitle>
+
+<EditForm Model="@this" OnValidSubmit="@StartNewGame">
+    <div class="table">
+        <div class="row">
+            <div class="col-1 align-self-center">Width:</div>
+            <InputNumber class="col-1" @bind-Value="Width"/>
+            <div class="col-1 align-self-center">Height:</div>
+            <InputNumber class="col-1" @bind-Value="Height"/>
+            <div class="col-1 align-self-center">Mines:</div>
+            <InputNumber class="col-1" @bind-Value="Mines"/>
+            <div class="col">
+                <div> <!-- To avoid background override -->
+                    <button type="submit" class="ml-1 btn btn-primary">New game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@if (mGame != null)
+{
+    <div class="game-container">
+        <Renderer Game="@mGame" OnFieldClicked=FieldClickedHandler/>
+        <ModeControl @bind-IsStepMode="@IsStepMode"/>
+
+        @if (mGame.IsWon)
+        {
+            <div class="note win-note">You won!</div>
+        }
+        else if (mGame.IsLost)
+        {
+            <div class="note lost-note">You lost...</div>
+        }
+    </div>
+}
+
+
+@code {
+    int Width { get; set; } = 8;
+    int Height { get; set; } = 8;
+    int Mines { get; set; } = 4;
+    bool IsStepMode { get; set; } = true;
+
+    Game? mGame;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        StartNewGame();
+    }
+
+
+    private void StartNewGame()
+    {
+        mGame = new Game(Width, Height, Mines);
+        IsStepMode = true;
+    }
+
+
+    private void FieldClickedHandler(FieldClickedEventArgs args)
+    {
+        var command = IsStepMode
+            ? Command.CheckCommand(args.X, args.Y)
+            : Command.MarkCommand(args.X, args.Y);
+        mGame?.Execute(command);
+    }
+}

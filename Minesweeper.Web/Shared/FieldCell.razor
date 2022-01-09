@@ -1,0 +1,31 @@
+﻿@code {
+#pragma warning disable 8618
+    [Parameter]
+    public DisplayedCell Cell { get; set; }
+#pragma warning restore 8618
+
+
+    [Parameter]
+    public EventCallback<EventArgs> OnCellClicked { get; set; }
+}
+
+
+@{
+    var cellClasses = Cell.State == DisplayStates.ShowUnarmed || Cell.State == DisplayStates.OpenBomb
+        ? "stepped"
+        : "hidden";
+    var content = Cell.State == DisplayStates.ShowUnarmed && Cell.Neighbours > 0 ? Cell.Neighbours.ToString() : "";
+}
+
+<div class="field-cell @cellClasses" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))>
+    @content
+
+    @if (Cell.State == DisplayStates.MarkedBomb)
+    {
+        <img src="./images/bomb.png" alt="bomb"/>
+    }
+    else if (Cell.State == DisplayStates.OpenBomb)
+    {
+        <img src="./images/explosion.png" alt="explosion"/>        
+    }
+</div>
