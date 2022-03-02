@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<PageTitle>Game</PageTitle>
+
+@code {
+    int Width { get; set; } = 8;
+    int Height { get; set; } = 8;
+    int Mines { get; set; } = 4;
+    bool IsStepMode { get; set; } = true;
+
+    Game? mGame;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        StartNewGame();
+    }
+
+
+    private void StartNewGame()
+    {
+        mGame = new Game(Width, Height, Mines);
+        IsStepMode = true;
+    }
+}

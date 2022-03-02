@@ -4,7 +4,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 [assembly:InternalsVisibleTo("MineSweeper.Test")]
 
 
-internal class Game
+public class Game
 {
     #region Fields
 
