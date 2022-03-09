@@ -1,4 +1,7 @@
-﻿var game = new Game(8, 8, 4);
+﻿using Minesweeper.Lib;
+
+
+var game = new Game(8, 8, 4);
 var cx = 0;
 var cy = 0;
 

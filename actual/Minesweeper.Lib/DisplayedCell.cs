@@ -1,4 +1,7 @@
-﻿public class DisplayedCell
+﻿namespace Minesweeper.Lib;
+
+
+public class DisplayedCell
 {
     public DisplayStates State { get; set; }
 
@@ -9,13 +12,4 @@
     {
         return State.ToString();
     }
-}
-
-
-public enum DisplayStates
-{
-    Hide,
-    ShowUnarmed,
-    MarkedBomb,
-    OpenBomb
 }

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Minesweeper.Lib;
 using System;
 
 namespace MineSweeper.Test;

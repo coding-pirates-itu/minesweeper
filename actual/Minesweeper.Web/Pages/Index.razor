@@ -1,6 +1,10 @@
 ﻿@page "/"
+@using Minesweeper.Lib
 
 <PageTitle>Game</PageTitle>
+
+<Renderer Game="@mGame"/>
+
 
 @code {
     int Width { get; set; } = 8;

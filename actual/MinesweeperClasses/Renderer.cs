@@ -1,4 +1,6 @@
-﻿internal class Renderer
+﻿using Minesweeper.Lib;
+
+internal class Renderer
 {
     internal static void WriteField(Game game, int cx, int cy)
     {

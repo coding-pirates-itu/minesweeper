@@ -1,7 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
-using static System.Reflection.Metadata.BlobBuilder;
 
 [assembly:InternalsVisibleTo("MineSweeper.Test")]
+
+namespace Minesweeper.Lib;
+
 
 
 public class Game

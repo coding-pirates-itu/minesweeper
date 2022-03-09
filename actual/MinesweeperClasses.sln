@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper", "MinesweeperC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineSweeper.Test", "MineSweeper.Test\MineSweeper.Test.csproj", "{799F3820-9DBB-4CFF-AC18-A87333A5FD0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.Web", "Minesweeper.Web\Minesweeper.Web.csproj", "{2683AE0C-AF1C-4CF4-92F4-51C1B3FC0571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Web", "Minesweeper.Web\Minesweeper.Web.csproj", "{2683AE0C-AF1C-4CF4-92F4-51C1B3FC0571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.Lib", "Minesweeper.Lib\Minesweeper.Lib.csproj", "{AE320F91-BBD2-445B-9D1D-63EC428EBFFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Lib", "Minesweeper.Lib\Minesweeper.Lib.csproj", "{AE320F91-BBD2-445B-9D1D-63EC428EBFFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,35 +4,32 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-h1:focus {
-    outline: none;
+
+.field-cell {
+    display: inline-block;
+    background-color: lightgray;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-a, .btn-link {
-    color: #0071c1;
-}
+    .field-cell.opened {
+        border: 1px solid #c0c0c0;
+    }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
+    .field-cell.hidden {
+        border-left: 3px solid #f0f0f0;
+        border-top: 3px solid #f0f0f0;
+        border-right: 3px solid black;
+        border-bottom: 3px solid black;
+    }
 
-.content {
-    padding-top: 1.1rem;
-}
+    .field-cell img {
+        width: 100%;
+        height: 100%;
+    }
 
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
-}
-
-.invalid {
-    outline: 1px solid red;
-}
-
-.validation-message {
-    color: red;
-}
 
 #blazor-error-ui {
     background: lightyellow;

@@ -1,0 +1,31 @@
+﻿@using Minesweeper.Lib
+
+
+@code {
+    [Parameter]
+    public DisplayedCell Cell { get; set; }
+
+
+    [Parameter]
+    public EventCallback<EventArgs> OnCellClicked { get; set; }
+}
+
+@switch (Cell.State)
+{
+    case DisplayStates.Hide:
+        <div class="field-cell hidden" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        break;
+
+    case DisplayStates.ShowUnarmed:
+        <div class="field-cell opened" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))>
+            @(Cell.Neighbours == 0 ? " " : Cell.Neighbours.ToString())</div>
+        break;
+
+    case DisplayStates.MarkedBomb:
+        <div class="field-cell" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        break;
+
+    case DisplayStates.OpenBomb:
+        <div class="field-cell" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        break;
+}

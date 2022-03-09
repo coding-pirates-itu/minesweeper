@@ -1,4 +1,7 @@
-﻿public class Command
+﻿namespace Minesweeper.Lib;
+
+
+public class Command
 {
     public CommandTypes Type { get; set; }
 

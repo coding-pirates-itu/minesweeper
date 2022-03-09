@@ -1,0 +1,36 @@
+﻿@using Minesweeper.Lib
+
+
+@code {
+    [Parameter]
+    public Game Game { get; set; }
+
+    [Parameter]
+    public EventCallback<FieldClickedEventArgs> OnFieldClicked { get; set; }
+}
+
+<div>
+    <div class="field-container">
+
+    @for (var y = 0; y < Game.Height; y++)
+    {
+        <div class="field-row">
+    
+        @for (var x = 0; x < Game.Width; x++)
+        {
+            var cell = Game.GetCell(x, y);
+            var localX = x;
+            var localY = y;
+            <FieldCell Cell=@cell OnCellClicked=@(_ => CellClicked(localX, localY))/>
+        }
+        </div>
+    }
+    </div>
+</div>
+
+@code {
+    private void CellClicked(int x, int y)
+    {
+        OnFieldClicked.InvokeAsync(new FieldClickedEventArgs { X = x, Y = y });
+    }
+}
