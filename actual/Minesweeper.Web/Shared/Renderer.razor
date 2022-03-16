@@ -21,7 +21,7 @@
             var cell = Game.GetCell(x, y);
             var localX = x;
             var localY = y;
-            <FieldCell Cell=@cell OnCellClicked=@(_ => CellClicked(localX, localY))/>
+            <FieldCell Cell=@cell OnCellClicked=@(e => CellClicked(localX, localY, e.IsRightClick))/>
         }
         </div>
     }
@@ -29,8 +29,8 @@
 </div>
 
 @code {
-    private void CellClicked(int x, int y)
+    private void CellClicked(int x, int y, bool right)
     {
-        OnFieldClicked.InvokeAsync(new FieldClickedEventArgs { X = x, Y = y });
+        OnFieldClicked.InvokeAsync(new FieldClickedEventArgs { X = x, Y = y, IsRightClick = right });
     }
 }

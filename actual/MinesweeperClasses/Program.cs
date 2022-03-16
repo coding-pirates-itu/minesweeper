@@ -35,9 +35,9 @@ Command? GetInput()
             if (cx < game.Width - 1) cx++;
             return null;
         case ConsoleKey.Spacebar when key.Modifiers.HasFlag(ConsoleModifiers.Shift):
-            return new Command { Type = CommandTypes.Mark, X = cx, Y = cy };
+            return Command.MarkCommand(cx, cy);
         case ConsoleKey.Spacebar:
-            return new Command { Type = CommandTypes.Open, X = cx, Y = cy };
+            return Command.CheckCommand(cx, cy);
         case ConsoleKey.Escape:
             return new Command { Type = CommandTypes.Quit };
     }

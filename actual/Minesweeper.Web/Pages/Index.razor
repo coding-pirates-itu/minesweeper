@@ -3,14 +3,13 @@
 
 <PageTitle>Game</PageTitle>
 
-<Renderer Game="@mGame"/>
+<Renderer Game="@mGame" OnFieldClicked=FieldClickedHandler/>
 
 
 @code {
     int Width { get; set; } = 8;
     int Height { get; set; } = 8;
     int Mines { get; set; } = 4;
-    bool IsStepMode { get; set; } = true;
 
     Game? mGame;
 
@@ -25,6 +24,14 @@
     private void StartNewGame()
     {
         mGame = new Game(Width, Height, Mines);
-        IsStepMode = true;
+    }
+
+
+    private void FieldClickedHandler(FieldClickedEventArgs args)
+    {
+        var command = args.IsRightClick
+            ? Command.MarkCommand(args.X, args.Y)
+            : Command.CheckCommand(args.X, args.Y);
+        mGame?.Execute(command);
     }
 }

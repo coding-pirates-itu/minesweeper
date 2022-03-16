@@ -7,25 +7,30 @@
 
 
     [Parameter]
-    public EventCallback<EventArgs> OnCellClicked { get; set; }
+    public EventCallback<CellClickedEventArgs> OnCellClicked { get; set; }
 }
+
 
 @switch (Cell.State)
 {
     case DisplayStates.Hide:
-        <div class="field-cell hidden" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        <div class="field-cell hidden" @onclick=@(_ => OnCellClicked.InvokeAsync(CellClickedEventArgs.LeftClick))
+                                       @oncontextmenu=@(_ => OnCellClicked.InvokeAsync(CellClickedEventArgs.RightClick))
+                                       @oncontextmenu:preventDefault="true"></div>
         break;
 
     case DisplayStates.ShowUnarmed:
-        <div class="field-cell opened" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))>
+        <div class="field-cell opened">
             @(Cell.Neighbours == 0 ? " " : Cell.Neighbours.ToString())</div>
         break;
 
     case DisplayStates.MarkedBomb:
-        <div class="field-cell" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        <div class="field-cell marked" @onclick=@(_ => OnCellClicked.InvokeAsync(CellClickedEventArgs.RightClick))
+                                       @oncontextmenu=@(_ => OnCellClicked.InvokeAsync(CellClickedEventArgs.RightClick))
+                                       @oncontextmenu:preventDefault="true"></div>
         break;
 
     case DisplayStates.OpenBomb:
-        <div class="field-cell" @onclick=@(_ => OnCellClicked.InvokeAsync(EventArgs.Empty))></div>
+        <div class="field-cell exploded"></div>
         break;
 }
